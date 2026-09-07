@@ -73,7 +73,7 @@ module ReversiMethods
     end
   end
 
-  def finished?(board)
+  def finished?(board) #!で置ける/置けない　＝　はい/いいえ
     !placeable?(board, WHITE_STONE) && !placeable?(board, BLACK_STONE)
   end
 
