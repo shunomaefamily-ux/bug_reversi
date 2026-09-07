@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './position'
+require "debug"
 
 module ReversiMethods
   WHITE_STONE = 'W'
@@ -43,20 +44,22 @@ module ReversiMethods
   def put_stone(board, cell_ref, stone_color, dry_run: false)
     pos = Position.new(cell_ref)# マスを'f3','d6'などの表記で表現する。変数名cell_refとして取り扱う。
     raise '無効なポジションです' if pos.invalid? #row.nil? || col.nil?
+    binding.break
     raise 'すでに石が置かれています' unless pos.stone_color(board) == BLANK_CELL #return nil if out_of_board?   board[row][col]    !((0..7).cover?(row) && (0..7).cover?(col))
+    binding.break
 
     # コピーした盤面にて石の配置を試みて、成功すれば反映する
     copied_board = Marshal.load(Marshal.dump(board))
     copied_board[pos.col][pos.row] = stone_color
-
+    binding.break
     turn_succeed = false
     Position::DIRECTIONS.each do |direction|
       next_pos = pos.next_position(direction)
       turn_succeed = true if turn(copied_board, next_pos, stone_color, direction)
     end
-
+    binding.break
     copy_board(board, copied_board) if !dry_run && turn_succeed
-
+    binding.break
     turn_succeed
   end
 
