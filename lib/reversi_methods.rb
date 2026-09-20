@@ -42,8 +42,8 @@ module ReversiMethods
 
   def put_stone(board, cell_ref, stone_color, dry_run: false)
     pos = Position.new(cell_ref)
-    raise '無効なポジションです' if pos.invalid? 
-    raise 'すでに石が置かれています' unless pos.stone_color(board) == BLANK_CELL 
+    raise '無効なポジションです' if pos.invalid?
+    raise 'すでに石が置かれています' unless pos.stone_color(board) == BLANK_CELL
 
     # コピーした盤面にて石の配置を試みて、成功すれば反映する
     copied_board = Marshal.load(Marshal.dump(board))
@@ -53,7 +53,9 @@ module ReversiMethods
       next_pos = pos.next_position(direction)
       turn_succeed = true if turn(copied_board, next_pos, stone_color, direction)
     end
+
     copy_board(board, copied_board) if !dry_run && turn_succeed
+
     turn_succeed
   end
 
@@ -71,7 +73,7 @@ module ReversiMethods
     end
   end
 
-  def finished?(board) 
+  def finished?(board)
     !placeable?(board, WHITE_STONE) && !placeable?(board, BLACK_STONE)
   end
 

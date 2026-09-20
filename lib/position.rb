@@ -2,8 +2,8 @@
 
 class Position
   # マスを'f3','d6'などの表記で表現する。変数名cell_refとして取り扱う。
-  COL = %w[a b c d e f g h].freeze 
-  ROW = %w[1 2 3 4 5 6 7 8].freeze 
+  COL = %w[a b c d e f g h].freeze
+  ROW = %w[1 2 3 4 5 6 7 8].freeze
 
   DIRECTIONS = [
     TOP_LEFT      = :top_left,

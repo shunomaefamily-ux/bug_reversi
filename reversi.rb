@@ -5,16 +5,16 @@ require_relative './lib/reversi_methods'
 class Reversi
   include ReversiMethods
 
-  QUIT_COMMANDS = %w[quit exit q].freeze 
+  QUIT_COMMANDS = %w[quit exit q].freeze
 
-  def initialize 
-    @board = build_initial_board 
-    @current_stone = BLACK_STONE 
+  def initialize
+    @board = build_initial_board
+    @current_stone = BLACK_STONE
   end
 
   def run
-    loop do 
-      output(@board) 
+    loop do
+      output(@board)
 
       if finished?(@board)
         puts '試合終了'
@@ -30,7 +30,7 @@ class Reversi
       end
 
       print "command? (#{@current_stone == WHITE_STONE ? '白○' : '黒●'}) > "
-      command = gets.chomp 
+      command = gets.chomp
       break if QUIT_COMMANDS.include?(command)
 
       begin
@@ -48,11 +48,11 @@ class Reversi
     puts 'finished!'
   end
 
-  private 
+  private
 
   def toggle_stone
     @current_stone = @current_stone == WHITE_STONE ? BLACK_STONE : WHITE_STONE
   end
 end
 
-Reversi.new.run if __FILE__ == $PROGRAM_NAME 
+Reversi.new.run if __FILE__ == $PROGRAM_NAME
