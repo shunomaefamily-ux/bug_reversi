@@ -93,4 +93,3 @@ module ReversiMethods
     board.flatten.count { |cell| cell == stone_color }
   end
 end
-# 改行表示を調整
