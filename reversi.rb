@@ -55,4 +55,4 @@ class Reversi
   end
 end
 
-Reversi.new.run if __FILE__ == $PROGRAM_NAME # 改行表示を調整
+Reversi.new.run if __FILE__ == $PROGRAM_NAME
